@@ -45,7 +45,4 @@ public class Dictionary {
                 '}';
     }
 
-    public Dictionary() throws FileNotFoundException {
-        System.out.println("Antud faili pole olemas");
-    }
 }

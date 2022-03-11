@@ -12,7 +12,7 @@ public class Test {
                 String rida = sc.nextLine();
                 String[] tükid = rida.split(" ");
                 System.out.println(tükid[2].substring(1,tükid[2].length()-1));
-                System.out.println(rida);
+                System.out.println(tükid);
                 sonastik.addWord(tükid[2].substring(1,tükid[2].length()-1));
 
 

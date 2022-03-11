@@ -1,5 +1,10 @@
-import org.w3c.dom.ls.LSOutput;
-
 public class Word {
+    private String word;
+
+    public Word(String word) {
+        this.word = word;
+    }
+
+
 
 }

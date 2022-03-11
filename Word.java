@@ -1,5 +1,10 @@
 public class Word {
-    public static void main(String[] args) {
+    private String word;
 
+    public Word(String word) {
+        this.word = word;
     }
+
+
+
 }

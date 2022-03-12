@@ -1,11 +1,10 @@
 import java.util.Arrays;
 import java.util.List;
 
-public class Alphabet {
-    private final List<Letter> alphabet;
+public class Alphabet extends LetterSequence {
 
     public Alphabet() {
-        this.alphabet = initAlphabet();
+        super(initAlphabet());
     }
 
     private static List<Letter> initAlphabet() {
@@ -13,49 +12,34 @@ public class Alphabet {
         return Arrays.stream(alphabet.split("")).map(Letter::new).toList();
     }
 
-    public void setTrueWordLetters(String word){
-        for (String taht : word.split("")){
-            for (Letter letter : alphabet) {
-                if (taht.equals(letter.getLetter())) {
-                    letter.setInWord(true);
-                }
+    public String getUnused(){
+        StringBuilder unused = new StringBuilder();
+        for (Letter letter: getSequence()) {
+            if (!letter.isTried()){
+                unused.append(letter);
+            }
+
+        }
+        return unused.toString();
+    }
+
+    public String getWrongPosition(){
+        StringBuilder wrongPosition = new StringBuilder();
+        for (Letter letter: getSequence()) {
+            if (letter.isInWord() && letter.isTried() && !letter.isCorrectPosition()){
+                wrongPosition.append(letter);
             }
         }
+        return wrongPosition.toString();
     }
 
-    public void setTrueTry(String word){
-        for (String taht : word.split("")){
-            for (Letter letter : alphabet) {
-                if (taht.equals(letter.getLetter())) {
-                    letter.setTried(true);
-                }
+    public String getWrong() {
+        StringBuilder wrong = new StringBuilder();
+        for (Letter letter : getSequence()) {
+            if (!letter.isInWord() && letter.isTried()) {
+                wrong.append(letter);
             }
         }
+        return wrong.toString();
     }
-
-    public void setTrueLetterPositionNGuess(String letter){
-        for (Letter value : alphabet) {
-            if (value.getLetter().equals(letter)) {
-                value.setPosition(true);
-                value.setGuessed(true);
-            }
-        }
-    }
-
-    public void setTrueLetterGuess(String letter){
-        for (Letter value : alphabet) {
-            if (value.getLetter().equals(letter)) {
-                value.setGuessed(true);
-            }
-        }
-    }
-
-    public int getSize(){
-        return alphabet.size();
-    }
-
-    public List<Letter> getArray(){
-        return alphabet;
-    }
-
 }

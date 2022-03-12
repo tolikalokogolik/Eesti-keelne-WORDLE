@@ -44,7 +44,7 @@ public class test2 {
         System.out.println("Katsed on lõppenud - te olete kaotanud!");
         System.out.println("Õige sõna on " + true);
 
-        System.out.println("Te arvasite ära õige sõna - te võitsite!");
+
         System.out.println("Õige sõna on " + true);
 
 

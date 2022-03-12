@@ -36,4 +36,6 @@ public class Dictionary {
     public Word randomWord(){
         return  new Word(words.get((int) (Math.random() * words.size())));
     }
+
+
 }

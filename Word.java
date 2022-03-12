@@ -1,15 +1,29 @@
-public class Word {
-    private String word;
+import java.util.Arrays;
 
+public class Word extends LetterSequence {
     public Word(String word) {
-        this.word = word;
+        super(Arrays.stream(word.split("")).map(Letter::new).toList());
     }
 
-    public String getWord() {
-        return word;
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        getSequence().forEach(letter -> sb.append(letter.toString()));
+        return sb.toString();
     }
 
-    public String getLetter(int position){
-        return word.split("")[position];
+    public Letter getLetter(int position) {
+        return getSequence().get(position);
+    }
+
+    public String getCorrectCharacters() {
+        StringBuilder correctCharacters = new StringBuilder();
+        getSequence().forEach(letter -> {
+            if (letter.isCorrectPosition()) {
+                correctCharacters.append(letter).append(" ");
+            } else {
+                correctCharacters.append("_ ");
+            }
+        });
+        return correctCharacters.toString();
     }
 }

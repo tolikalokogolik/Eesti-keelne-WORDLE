@@ -21,8 +21,8 @@ public class Test {
         //loome sõnastiku ja lisame sõnad
         Dictionary sonastik = new Dictionary(inputDifficulty);
 
-        Word sona = new Word(sonastik.randomWord());
-        alphabet.setTrueWordLetters(sona.getWord());
+        Word sona = sonastik.randomWord();
+        alphabet.setCorrectWordLetters(sona.toString());
 
         while (tryCount <= 6){
             System.out.println("Sisesta sõna, mille pikkus on " + inputDifficulty + " tähemärki.");
@@ -44,38 +44,18 @@ public class Test {
 
                     for (int j = 0; j < inputDifficulty; j++) {
 
-                        if (i==j && inputWord.toString().split("")[i] == sona.getLetter(j)){
+                        alphabet.setTrueTry(inputWord.toString().split("")[i]);
 
-                            alphabet.setTrueLetterPositionNGuess(inputWord.toString().split("")[i]);
-                            toReturn.setCharAt(i*2, sona.getLetter(i).charAt(0));
-                            alphabet.setTrueTry(inputWord.toString().split("")[i]);
+                        // green
+                        if (i==j && inputWord.toString().split("")[i] == sona.getLetter(j).toString()){
+                            sona.setCharacterPositionNGuess(j);
+                            alphabet.setCharacterPositionNGuess(inputWord.toString().split("")[i]);
 
-                        } else if (inputWord.toString().split("")[i] == sona.getLetter(j)){
-
-                            alphabet.setTrueLetterGuess(inputWord.toString().split("")[i]);
-                            alphabet.setTrueTry(inputWord.toString().split("")[i]);
-
-                        } else{
-
-                            alphabet.setTrueTry(inputWord.toString().split("")[i]);
+                        // yellow
+                        } else if (inputWord.toString().split("")[i] == sona.getLetter(j).toString()){
+                            alphabet.setCharacterGuess(inputWord.toString().split("")[i]);
+                            sona.setCharacterGuess(j);
                         }
-
-                    }
-                }
-
-
-                for (int i = 0; i < alphabet.getSize(); i++) {
-                    if (!alphabet.getArray().get(i).isPosition() && alphabet.getArray().get(i).isGuessed() && !yellowLetters.contains(alphabet.getArray().get(i).getLetter())){
-                        yellowLetters += alphabet.getArray().get(i).getLetter();
-                    } else if (alphabet.getArray().get(i).isPosition() && alphabet.getArray().get(i).isGuessed() && yellowLetters.contains(alphabet.getArray().get(i).getLetter())){
-                        //eemaldame kollaste tähtede nimekirjast, kui on ära arvatud
-                        // vaja lisada kontroll, et kas esinevad kordused
-                    }
-                }
-
-                for (int i = 0; i < alphabet.getSize(); i++) {
-                    if (alphabet.getArray().get(i).isTried() & !triedLetters.contains(alphabet.getArray().get(i).getLetter())){
-                        triedLetters += alphabet.getArray().get(i).getLetter();
                     }
                 }
 
@@ -94,10 +74,10 @@ public class Test {
 
             if(win){
                 System.out.println("Te arvasite ära õige sõna - te võitsite!");
-                System.out.println("Õige sõna on " + sona.getWord());
+                System.out.println("Õige sõna on " + sona.toString());
             } else{
                 System.out.println("Katsed on lõppenud - te olete kaotanud!");
-                System.out.println("Õige sõna on " + sona.getWord());
+                System.out.println("Õige sõna on " + sona.toString());
             }
         }
 

@@ -1,12 +1,13 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Game {
     private final int difficulty;
-    private Word desiredWord;
+    private final Word desiredWord;
     private final Dictionary dictionary;
     private final Alphabet alphabet;
     private int currentTry = 0;
-    private static int INIT_TRY_COUNT = 6;
+    private static final int INIT_TRY_COUNT = 6;
 
     public Game(int difficulty) {
         this.difficulty = difficulty;
@@ -14,18 +15,55 @@ public class Game {
         this.alphabet = new Alphabet();
 
         this.desiredWord = dictionary.randomWord();
-        this.alphabet.setTrueWordLetters(this.desiredWord.getWord());
+        this.alphabet.setCorrectWordLetters(this.desiredWord.toString());
     }
 
     public void start() {
         while (currentTry < INIT_TRY_COUNT) {
+            currentTry++;
             String inputWord = readInput();
-            if (inputWord.length() != difficulty) {
+            if (Objects.equals(inputWord, desiredWord.toString())) {
+                showWinMessage();
+                break;
+            }
+            else if (inputWord.length() != difficulty) {
                 showLengthError();
             } else if (!dictionary.checkWord(inputWord)) {
                 showNotFoundError();
+            } else {
+                for (int i = 0; i < difficulty; i++) {
+                    for (int j = 0; j < difficulty; j++) {
+
+                        alphabet.setTrueTry(inputWord.split("")[i]);
+
+                        // green
+                        if (i==j && Objects.equals(inputWord.split("")[i], desiredWord.getLetter(j).toString())){
+                            desiredWord.setCharacterPositionNGuess(j);
+                            alphabet.setCharacterPositionNGuess(inputWord.split("")[i]);
+
+                            // yellow
+                        } else if (Objects.equals(inputWord.split("")[i], desiredWord.getLetter(j).toString())){
+                            alphabet.setCharacterGuess(inputWord.split("")[i]);
+                            desiredWord.setCharacterGuess(j);
+                        }
+                    }
+                }
+                showState();
             }
         }
+        if (currentTry == INIT_TRY_COUNT) {
+            showLoseMessage();
+        }
+    }
+
+    private void showLoseMessage() {
+        System.out.println("Katsed on lõppenud - te olete kaotanud!");
+        System.out.println("Õige sõna on " + desiredWord.toString());
+    }
+
+    private void showWinMessage() {
+        System.out.println("Te arvasite ära õige sõna - te võitsite!");
+        // TODO add stats
     }
 
     private void showLengthError() {
@@ -38,6 +76,14 @@ public class Game {
         System.out.println("Katseid jäänud: " + (INIT_TRY_COUNT-currentTry));
     }
 
+    private void showState() {
+        // TODO add current word state
+        System.out.println("Hetkel sõna kuju: " + desiredWord.getCorrectCharacters());
+        System.out.println("Ära arvatud tähed, kuid valel positsioonil: " + alphabet.getWrongPosition());
+        System.out.println("Neid tähti pole sõnas: " + alphabet.getWrong());
+        System.out.println("Katseid jäänud: " + (INIT_TRY_COUNT-currentTry));
+    }
+
     public String readInput() {
         System.out.println("Sisesta sõna, mille pikkus on " + difficulty + " tähemärki.");
         Scanner scan = new Scanner(System.in);
@@ -46,6 +92,7 @@ public class Game {
 
     public static String readDifficultyInput() {
         System.out.println("Sisesta raskustase (4,5,6): ");
+        // TODO add validation for correct input
         Scanner scan = new Scanner(System.in);
         return scan.next().toLowerCase();
     }

@@ -26,7 +26,7 @@ public class Letter {
         return repeat;
     }
 
-    public String getLetter() {
+    public String toString() {
         return letter;
     }
 
@@ -38,7 +38,7 @@ public class Letter {
         return guessed;
     }
 
-    public boolean isPosition() {
+    public boolean isCorrectPosition() {
         return position;
     }
 
@@ -54,7 +54,7 @@ public class Letter {
         this.guessed = guessed;
     }
 
-    public void setPosition(boolean position) {
+    public void setCorrectPosition(boolean position) {
         this.position = position;
     }
 

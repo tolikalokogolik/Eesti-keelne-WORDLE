@@ -1,11 +1,29 @@
 public class Letter {
     private String letter;
-    private boolean inWord = false;
     private boolean guessed = false;
+    private boolean inWord = false;
     private boolean position = false;
+    private boolean tried = false;
+    private boolean repeat = false;
 
     public Letter(String letter) {
         this.letter = letter;
+    }
+
+    public void setTried(boolean tried) {
+        this.tried = tried;
+    }
+
+    public void setRepeat(boolean repeat) {
+        this.repeat = repeat;
+    }
+
+    public boolean isTried() {
+        return tried;
+    }
+
+    public boolean isRepeat() {
+        return repeat;
     }
 
     public String getLetter() {

@@ -5,6 +5,11 @@ public class Word {
         this.word = word;
     }
 
+    public String getWord() {
+        return word;
+    }
 
-
+    public String getLetter(int position){
+        return word.split("")[position];
+    }
 }

@@ -13,20 +13,16 @@ public class Dictionary {
         return difficulty;
     }
 
-    /*
-    java.io.File fail = new java.io.File("dic" + difficulty +".txt");
-
-    try (java.util.Scanner sc = new java.util.Scanner(fail, "UTF-8")) {
-        while (sc.hasNextLine()) {
-            String rida = sc.nextLine();
-            String[] tükid = rida.split(" ");
-
-            words.add(tükid[2].substring(1,tükid[2].length()-1));
-
-
+    public boolean checkWord(String toCheckWord){
+        for (String word : words) {
+            if (word.equals(toCheckWord)){
+                return true;
+            }
         }
+
+        return false;
+
     }
-     */
 
 
     public void addWord(String sona){
@@ -34,15 +30,12 @@ public class Dictionary {
     }
 
     public String randomWord(){
-        return words.get((int) Math.random() * words.size());
+        return words.get((int) (Math.random() * words.size()));
     }
 
-    @Override
-    public String toString() {
-        return "Dictionary{" +
-                "difficulty=" + difficulty +
-                ", words=" + words +
-                '}';
-    }
+
+
+
+
 
 }

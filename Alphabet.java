@@ -1,11 +1,17 @@
+import java.util.Arrays;
+import java.util.List;
+
 public class Alphabet {
-    protected final Letter[] alphabet = {
-            new Letter("a"), new Letter("c"), new Letter("b"), new Letter("d"), new Letter("e"),
-            new Letter("f"), new Letter("g"), new Letter("h"), new Letter("i"), new Letter("j"),
-            new Letter("k"), new Letter("l"), new Letter("m"), new Letter("n"), new Letter("o"),
-            new Letter("p"), new Letter("q"),new Letter("r") ,new Letter("s") , new Letter("t"),
-            new Letter("u"), new Letter("v"), new Letter("w"), new Letter("x"), new Letter("y"),
-            new Letter("z"), new Letter("õ"), new Letter("ä"), new Letter("ö"), new Letter("ü")};
+    private final List<Letter> alphabet;
+
+    public Alphabet() {
+        this.alphabet = initAlphabet();
+    }
+
+    private static List<Letter> initAlphabet() {
+        String alphabet = "abcdefghijklmnopuqrstuvwxyzõäöü";
+        return Arrays.stream(alphabet.split("")).map(Letter::new).toList();
+    }
 
     public void setTrueWordLetters(String word){
         for (String taht : word.split("")){
@@ -15,7 +21,6 @@ public class Alphabet {
                 }
             }
         }
-
     }
 
     public void setTrueTry(String word){
@@ -46,17 +51,11 @@ public class Alphabet {
     }
 
     public int getSize(){
-        return alphabet.length;
+        return alphabet.size();
     }
 
-    public Letter[] getArray(){
+    public List<Letter> getArray(){
         return alphabet;
     }
-
-
-
-
-
-
 
 }

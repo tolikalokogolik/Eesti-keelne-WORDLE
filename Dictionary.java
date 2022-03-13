@@ -5,14 +5,17 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Dictionary {
+    //sõnade massiiv, mida hiljem muuta ei saa
     private final List<String> words = new ArrayList<>();
 
+    //Konstruktor
     public Dictionary(int difficulty) {
         this.loadWords(difficulty);
     }
 
+    //loeme sõnad sisse rida kaupa
     public void loadWords(int difficulty) {
-        File fail = new File( "C:\\Users\\Natal\\Documents\\Tartu Ülikool\\VI aasta\\Eessti-keelne-WORDLE\\dic" + difficulty +".txt");
+        File fail = new File( "dic" + difficulty +".txt");
         try (Scanner sc = new Scanner(fail, StandardCharsets.UTF_8)) {
             while (sc.hasNextLine()) {
                 String rida = sc.nextLine();
@@ -24,6 +27,7 @@ public class Dictionary {
         }
     }
 
+    //kontrollime sõna olemasolu sõnastikus
     public boolean checkWord(String toCheckWord){
         for (String word : words) {
             if (word.equals(toCheckWord)){
@@ -33,6 +37,7 @@ public class Dictionary {
         return false;
     }
 
+    //valime juhusliku sõna sõnastikust
     public Word randomWord(){
         return  new Word(words.get((int) (Math.random() * words.size())));
     }

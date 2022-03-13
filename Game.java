@@ -9,6 +9,7 @@ public class Game {
     private int currentTry = 0;
     private static final int INIT_TRY_COUNT = 6;
 
+    //Konstruktir
     public Game(int difficulty) {
         this.difficulty = difficulty;
         this.dictionary = new Dictionary(difficulty);
@@ -18,18 +19,20 @@ public class Game {
         this.alphabet.setCorrectWordLetters(this.desiredWord.toString());
     }
 
+    //mängu protsess
     public void start() {
         while (currentTry < INIT_TRY_COUNT) {
+            //küsime sisendi
             Word inputWord = new Word(readInput());
-            if (Objects.equals(inputWord.toString(), desiredWord.toString())) {
+
+            if (Objects.equals(inputWord.toString(), desiredWord.toString())) { //võit
                 showWinMessage();
                 break;
-            }
-            else if (inputWord.toString().length() != difficulty) {
+            } else if (inputWord.toString().length() != difficulty) { //Kontrollime sisendi korrektsust
                 showLengthError();
-            } else if (!dictionary.checkWord(inputWord.toString())) {
+            } else if (!dictionary.checkWord(inputWord.toString())) { //Kontrollime sisendi korrektsust
                 showNotFoundError();
-            } else {
+            } else { //Muudame kõigi tähtede olekut vastavalt sisendile sõnades ja tähestikus
                 currentTry++;
                 for (int i = 0; i < difficulty; i++) {
                     for (int j = 0; j < difficulty; j++) {
@@ -51,10 +54,11 @@ public class Game {
                         }
                     }
                 }
+                //kuvame hetkeseisu
                 showState(inputWord);
             }
         }
-        if (currentTry == INIT_TRY_COUNT) {
+        if (currentTry == INIT_TRY_COUNT) { //kaotus
             showLoseMessage();
         }
     }
@@ -80,8 +84,6 @@ public class Game {
     }
 
     private void showState(Word inputWord) {
-        // TODO add current word state
-
         System.out.println("Hetkel sõna kuju: " + desiredWord.getCorrectCharacters());
         System.out.print("Sisestatud sõna: ");
         inputWord.getColored();
@@ -97,6 +99,7 @@ public class Game {
         return scan.next().toLowerCase();
     }
 
+    //küsime raskustase
     public static String readDifficultyInput() {
         String input;
         while (true){
@@ -113,6 +116,7 @@ public class Game {
         return input;
     }
 
+    //reeglid
     public static void showRules(){
         System.out.println("Tere tulemast mängu - Wordle!");
         System.out.println();
@@ -125,7 +129,7 @@ public class Game {
         System.out.println("Kui sisestad sõna valesti, siis sa ei kaota katset.");
     }
 
-
+    //debugging getters
 
     public int getDifficulty() {
         return difficulty;

@@ -1,10 +1,12 @@
 public class Letter {
     private String letter;
+    //Tõeväärtused määravad tähe erinevad seisundid
     private boolean guessed = false;
     private boolean inWord = false;
     private boolean position = false;
     private boolean tried = false;
     private boolean repeat = false;
+    //Erinevad värvid
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_WHITE = "\u001B[37m";
@@ -62,6 +64,7 @@ public class Letter {
         this.position = position;
     }
 
+    //tähe seisund debuggimiseks
     @Override
     public String toString() {
         return "Letter{" +
@@ -74,6 +77,7 @@ public class Letter {
                 '}';
     }
 
+    //prindib välja värvilisena sõltuvalt tähe seisundist
     public void toColor(){
         if ( isCorrectPosition()){
             System.out.print(ANSI_GREEN + letter + RESET);

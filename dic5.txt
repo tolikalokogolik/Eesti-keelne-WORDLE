@@ -1,4 +1,3 @@
-"sona"
 "1" "pisut"
 "2" "veidi"
 "3" "liiga"

@@ -47,12 +47,12 @@ public class Test {
                         alphabet.setTrueTry(inputWord.toString().split("")[i]);
 
                         // green
-                        if (i==j && inputWord.toString().split("")[i] == sona.getLetter(j).toString()){
+                        if (i==j && inputWord.toString().split("")[i] == sona.getLetter(j).getValue()){
                             sona.setCharacterPositionNGuess(j);
                             alphabet.setCharacterPositionNGuess(inputWord.toString().split("")[i]);
 
                         // yellow
-                        } else if (inputWord.toString().split("")[i] == sona.getLetter(j).toString()){
+                        } else if (inputWord.toString().split("")[i] == sona.getLetter(j).getValue()){
                             alphabet.setCharacterGuess(inputWord.toString().split("")[i]);
                             sona.setCharacterGuess(j);
                         }

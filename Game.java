@@ -20,7 +20,6 @@ public class Game {
 
     public void start() {
         while (currentTry < INIT_TRY_COUNT) {
-            currentTry++;
             String inputWord = readInput();
             if (Objects.equals(inputWord, desiredWord.toString())) {
                 showWinMessage();
@@ -31,18 +30,19 @@ public class Game {
             } else if (!dictionary.checkWord(inputWord)) {
                 showNotFoundError();
             } else {
+                currentTry++;
                 for (int i = 0; i < difficulty; i++) {
                     for (int j = 0; j < difficulty; j++) {
 
                         alphabet.setTrueTry(inputWord.split("")[i]);
 
                         // green
-                        if (i==j && Objects.equals(inputWord.split("")[i], desiredWord.getLetter(j).toString())){
+                        if (i==j && Objects.equals(inputWord.split("")[i], desiredWord.getLetter(j).getValue())){
                             desiredWord.setCharacterPositionNGuess(j);
                             alphabet.setCharacterPositionNGuess(inputWord.split("")[i]);
 
                             // yellow
-                        } else if (Objects.equals(inputWord.split("")[i], desiredWord.getLetter(j).toString())){
+                        } else if (Objects.equals(inputWord.split("")[i], desiredWord.getLetter(j).getValue())){
                             alphabet.setCharacterGuess(inputWord.split("")[i]);
                             desiredWord.setCharacterGuess(j);
                         }
@@ -78,6 +78,7 @@ public class Game {
 
     private void showState() {
         // TODO add current word state
+
         System.out.println("Hetkel sõna kuju: " + desiredWord.getCorrectCharacters());
         System.out.println("Ära arvatud tähed, kuid valel positsioonil: " + alphabet.getWrongPosition());
         System.out.println("Neid tähti pole sõnas: " + alphabet.getWrong());
@@ -95,5 +96,25 @@ public class Game {
         // TODO add validation for correct input
         Scanner scan = new Scanner(System.in);
         return scan.next().toLowerCase();
+    }
+
+    public int getDifficulty() {
+        return difficulty;
+    }
+
+    public Word getDesiredWord() {
+        return desiredWord;
+    }
+
+    public Dictionary getDictionary() {
+        return dictionary;
+    }
+
+    public Alphabet getAlphabet() {
+        return alphabet;
+    }
+
+    public int getCurrentTry() {
+        return currentTry;
     }
 }

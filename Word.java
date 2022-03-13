@@ -7,7 +7,7 @@ public class Word extends LetterSequence {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        getSequence().forEach(letter -> sb.append(letter.toString()));
+        getSequence().forEach(letter -> sb.append(letter.getValue()));
         return sb.toString();
     }
 
@@ -19,7 +19,7 @@ public class Word extends LetterSequence {
         StringBuilder correctCharacters = new StringBuilder();
         getSequence().forEach(letter -> {
             if (letter.isCorrectPosition()) {
-                correctCharacters.append(letter).append(" ");
+                correctCharacters.append(letter.getValue()).append(" ");
             } else {
                 correctCharacters.append("_ ");
             }

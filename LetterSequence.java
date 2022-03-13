@@ -12,7 +12,7 @@ public class LetterSequence {
     public void setCorrectWordLetters(String word){
         for (String taht : word.split("")){
             for (Letter letter : sequence) {
-                if (taht.equals(letter.toString())) {
+                if (taht.equals(letter.getValue())) {
                     letter.setInWord(true);
                 }
             }
@@ -22,8 +22,8 @@ public class LetterSequence {
     public void setTrueTry(String word) {
         for (String taht : word.split("")){
             for (Letter letter : sequence) {
-                if (taht.equals(letter.toString())) {
-                    letter.setInWord(true);
+                if (taht.equals(letter.getValue())) {
+                    letter.setTried(true);
                 }
             }
         }
@@ -31,7 +31,7 @@ public class LetterSequence {
 
     public void setCharacterPositionNGuess(String character){
         for (Letter value : sequence) {
-            if (value.toString().equals(character)) {
+            if (value.getValue().equals(character)) {
                 value.setCorrectPosition(true);
                 value.setGuessed(true);
             }
@@ -46,7 +46,7 @@ public class LetterSequence {
 
     public void setCharacterGuess(String letter){
         for (Letter value : sequence) {
-            if (value.toString().equals(letter)) {
+            if (value.getValue().equals(letter)) {
                 value.setGuessed(true);
             }
         }

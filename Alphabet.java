@@ -27,7 +27,7 @@ public class Alphabet extends LetterSequence {
         StringBuilder wrongPosition = new StringBuilder();
         for (Letter letter: getSequence()) {
             if (letter.isInWord() && letter.isTried() && !letter.isCorrectPosition()){
-                wrongPosition.append(letter);
+                wrongPosition.append(letter.getValue());
             }
         }
         return wrongPosition.toString();
@@ -37,7 +37,7 @@ public class Alphabet extends LetterSequence {
         StringBuilder wrong = new StringBuilder();
         for (Letter letter : getSequence()) {
             if (!letter.isInWord() && letter.isTried()) {
-                wrong.append(letter);
+                wrong.append(letter.getValue());
             }
         }
         return wrong.toString();

@@ -26,7 +26,7 @@ public class Letter {
         return repeat;
     }
 
-    public String toString() {
+    public String getValue() {
         return letter;
     }
 
@@ -58,5 +58,15 @@ public class Letter {
         this.position = position;
     }
 
-
+    @Override
+    public String toString() {
+        return "Letter{" +
+                "letter='" + letter + '\'' +
+                ", guessed=" + guessed +
+                ", inWord=" + inWord +
+                ", position=" + position +
+                ", tried=" + tried +
+                ", repeat=" + repeat +
+                '}';
+    }
 }

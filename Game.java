@@ -113,6 +113,18 @@ public class Game {
         return input;
     }
 
+    public static void showRules(){
+        System.out.println("Tere tulemast mängu - Wordle!");
+        System.out.println();
+        System.out.println("Meie mängureeglid on lihtsad.");
+        System.out.println("Te valite kõigepealt, millise pikkusega sõna soovite ära arvata, ja alustate siis olemasoleva sõna sisestamist.");
+        System.out.println("Pärast sõna sisestamist ütleb programm teile, milline täht on õige ja on õiges kohas (roheline), ning milline täht on õige, kuid ei ole õiges kohas (kollane).");
+        System.out.println("Teil on kuus katset õige sõna sisestamiseks.");
+        System.out.println("Kui leiad õige sõna, siis võidad.");
+        System.out.println("Kui mitte, siis oled kaotanud!");
+        System.out.println("Kui sisestad sõna valesti, siis sa ei kaota katset.");
+    }
+
 
 
     public int getDifficulty() {

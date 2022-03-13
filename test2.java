@@ -20,7 +20,7 @@ public class test2 {
         System.out.println("Tere tulemast meie mängu - Wordle!");
         System.out.println("Meie mängureeglid on lihtsad.");
         System.out.println("Te valite kõigepealt, millise pikkusega sõna soovite ära arvata, ja alustate siis olemasoleva sõna sisestamist.");
-        System.out.println("Pärast sõna sisestamist ütleb programm teile, milline täht on õige ja on õiges kohas, ning milline täht on õige, kuid ei ole õiges kohas.");
+        System.out.println("Pärast sõna sisestamist ütleb programm teile, milline täht on õige ja on õiges kohas (roheline), ning milline täht on õige, kuid ei ole õiges kohas(kollane.");
         System.out.println("Teil on kuus katset õige sõna sisestamiseks.");
         System.out.println("Kui leiad õige sõna, siis võidad.");
         System.out.println("Kui mitte, siis olete kaotanud!");

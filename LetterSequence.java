@@ -29,6 +29,11 @@ public class LetterSequence {
         }
     }
 
+    public void setTrueTry(int position){
+        Letter letter = sequence.get(position);
+        letter.setTried(true);
+    }
+
     public void setCharacterPositionNGuess(String character){
         for (Letter value : sequence) {
             if (value.getValue().equals(character)) {

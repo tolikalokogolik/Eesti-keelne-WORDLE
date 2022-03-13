@@ -26,4 +26,11 @@ public class Word extends LetterSequence {
         });
         return correctCharacters.toString();
     }
+
+    public void getColored(){
+        for (Letter letter : getSequence()) {
+            letter.toColor();
+        }
+    }
+
 }

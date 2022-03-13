@@ -5,6 +5,10 @@ public class Letter {
     private boolean position = false;
     private boolean tried = false;
     private boolean repeat = false;
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_WHITE = "\u001B[37m";
+    public static final String RESET = "\033[0m";
 
     public Letter(String letter) {
         this.letter = letter;
@@ -68,5 +72,15 @@ public class Letter {
                 ", tried=" + tried +
                 ", repeat=" + repeat +
                 '}';
+    }
+
+    public void toColor(){
+        if ( isCorrectPosition()){
+            System.out.print(ANSI_GREEN + letter + RESET);
+        } else if (isGuessed() && !isCorrectPosition()) {
+            System.out.print(ANSI_YELLOW + letter + RESET);
+        } else{
+            System.out.print(ANSI_WHITE + letter + RESET);
+        }
     }
 }
